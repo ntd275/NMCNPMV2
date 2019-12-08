@@ -21,4 +21,8 @@
                                     <div>              
               <%String link = (String) session.getAttribute("link");%>
                                     <a><img src= <%=link%>>
-                                  </a>    </div>                
+                                  </a>    </div>    
+                                  
+                                  
+ <jsp:include page="brand.jsp"></jsp:include>                                 
+                                  
