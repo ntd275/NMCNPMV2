@@ -167,13 +167,13 @@ public class ControllerServlet extends HttpServlet {
         if (userPath.equals("/viewCart")) {
             String clear = request.getParameter("clear");
             request.setAttribute("title", "View Cart");
-            if ((clear != null) && clear.equals("true")) {
-                ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
                 if (cart == null) {
                     cart = new ShoppingCart();
                     session.setAttribute("cart", cart);
                 }
-                cart.clear();
+            if ((clear != null) && clear.equals("true")) {
+                                cart.clear();
             }
         }
 

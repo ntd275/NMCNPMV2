@@ -112,7 +112,7 @@ public class TryOn {
         try {
             System.out.println(imgPer);
             System.out.println(input.get(imgIndex));
-            output = executePost(imgPer, input.get(imgIndex), Integer.toString(imgIndex), "F", "127.0.0.1:8000");
+            output = executePost(imgPer, input.get(imgIndex), Integer.toString(imgIndex), "F", "192.168.43.111:8000");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
