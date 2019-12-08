@@ -37,4 +37,11 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
                 .setMaxResults(9)
                 .getResultList();
     }
+
+    public SanPham FindByID(String id) {
+        return (SanPham) em.createQuery(
+                "SELECT c FROM SanPham c WHERE c.idsp = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+    }
 }

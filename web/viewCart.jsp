@@ -57,7 +57,7 @@
             if (cart.getNumberOfItems() != 0) {
         %>
         <div class="produced">
-            <a href="<c:url value='viewCart?clear=true'/>" class="hvr-skew-backward">Produced To Buy</a>
+            <a href="<c:url value='checkout'/>" class="hvr-skew-backward">Produced To Buy</a>
         </div>
         <%
             }

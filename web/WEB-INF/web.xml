@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <description>The delivery fee</description>
+        <param-name>deliveryFee</param-name>
+        <param-value>5.00</param-value>
+    </context-param>
     <listener>
         <description>ServletContextListener</description>
         <listener-class>listener.ControllerServletListener</listener-class>
@@ -22,6 +27,8 @@
         <url-pattern>/logout</url-pattern>
         <url-pattern>/profile</url-pattern>
         <url-pattern>/tryOn</url-pattern>
+        <url-pattern>/checkout</url-pattern>
+        <url-pattern>/confirmation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -45,6 +52,7 @@
             <url-pattern>/viewCart.jsp</url-pattern>
             <url-pattern>/profile.jsp</url-pattern>
             <url-pattern>/tryOn.jsp</url-pattern>
+            <url-pattern>/confirmation.jsp</url-pattern>
             <!-- và các trang khác -->
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>

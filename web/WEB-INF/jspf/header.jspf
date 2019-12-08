@@ -142,7 +142,7 @@
                         </nav>
                     </div>
                     <div class="col-sm-2 search-right" >
-                        <ul class="heart"  style="margin-left: 30%">
+                        <ul class="heart">
                             <li>
                             <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i></a></li>
                         </ul>

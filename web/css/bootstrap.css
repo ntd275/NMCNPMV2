@@ -1598,8 +1598,8 @@ pre code {
     }
 }
 .container-fluid {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -2547,7 +2547,7 @@ output {
 }
 .form-control {
     display: block;
-    width: 100%;
+    width: 90%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -3090,8 +3090,8 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
     color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
+    background-color: #df664e;
+    border-color: #df664e;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -3100,8 +3100,8 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #286090;
-    border-color: #204d74;
+    background-color: #f88c77;
+    border-color: #f88c77;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -3377,7 +3377,7 @@ fieldset[disabled] .btn-link:focus {
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
-    width: 100%;
+    width: 91%;
 }
 .fade {
     opacity: 0;
