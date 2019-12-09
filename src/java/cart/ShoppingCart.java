@@ -24,17 +24,18 @@ public class ShoppingCart {
         total = 0;
     }
 
-    public synchronized void addItem(SanPham product) {
+    public synchronized void addItem(SanPham product,int num) {
         boolean newItem = true;
         for (ShoppingCartItem scItem : items) {
             if (scItem.getProduct().getIdsp().equals(product.getIdsp())) {
                 newItem = false;
-                scItem.incrementQuantity();
+                scItem.incrementQuantity(num);
             }
         }
         if (newItem) {
             ShoppingCartItem scItem = new ShoppingCartItem(product);
             items.add(scItem);
+            scItem.incrementQuantity(num-1);
         }
         total = this.getSubtotal();
     }

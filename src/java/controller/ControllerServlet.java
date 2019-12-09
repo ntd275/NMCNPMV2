@@ -207,10 +207,14 @@ public class ControllerServlet extends HttpServlet {
                 session.setAttribute("cart", cart);
             }
             // get user input from request
-            String productId = request.getQueryString();
+            int num;
+            String productId = request.getParameter("id");
+            String number = (String)request.getParameter("num");
+            if(number == null) num = 1;
+            else num = Integer.parseInt(number);
             if (!productId.isEmpty()) {
                 SanPham product = ProductSB.find(productId);
-                cart.addItem(product);
+                cart.addItem(product,num);
                 request.setAttribute("title", product.getLoai());
             }
             String userView = (String) session.getAttribute("view");

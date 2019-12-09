@@ -3,6 +3,7 @@
     Created on : Nov 24, 2019, 8:01:20 PM
     Author     : ntd27
 --%>
+<%@page import="entity.*"%>
 <jsp:include page="banner-top.jsp"></jsp:include>
     <script>$(document).ready(function (c) {
             $('.close1').on('click', function (c) {
@@ -67,19 +68,19 @@
                                     <input type="hidden" name ="userpath" id="userpath" value="/purchase">
                                     <div class="form-group">
                                         <label for="name">Name</label>
-                                        <input type="text" class="form-control form-control-large" id="name" name="name" placeholder="Enter name">
+                                        <input type="text" class="form-control form-control-large" id="name" name="name" placeholder="Enter name" value="<%=user.getTenKH() %>">
                                     </div>
                                     <div class="form-group">
                                         <label for="email" class="required">Email</label>
-                                        <input type="text" class="form-control form-control-large" id="email" name="email" placeholder="Enter email">
+                                        <input type="text" class="form-control form-control-large" id="email" name="email" placeholder="Enter email" value="<%=user.getEmail() %>">
                                     </div>
                                     <div class="form-group">
                                         <label for="phone" class="required">Phone</label>
-                                        <input type="text" class="form-control form-control-large" id="phone" name="phone" placeholder="Enter phone number">
+                                        <input type="text" class="form-control form-control-large" id="phone" name="phone" placeholder="Enter phone number" value="<%=user.getSoDT() %>">
                                     </div>
                                     <div class="form-group">
                                         <label for="address" class="required">Address</label>
-                                        <input type="text" class="form-control form-control-large" id="address" name="address" placeholder="Enter address">
+                                        <input type="text" class="form-control form-control-large" id="address" name="address" placeholder="Enter address" value="<%=user.getDiaChi() %>">
                                     </div>
                                     <div class="form-group">
                                         <input style="margin-top: 26px;height: 52px" value="Submit purchase" type="submit" class="btn btn-primary btn-lg btn-block">

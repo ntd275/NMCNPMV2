@@ -52,17 +52,21 @@
                         $('.value-plus').on('click', function () {
                             var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
                             divUpd.text(newVal);
+                            var old = $('#numbersp').attr('href');
+                            $('#numbersp').attr('href',old.substring(0,22)+newVal);
                         });
 
                         $('.value-minus').on('click', function () {
                             var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
                             if (newVal >= 1)
                                 divUpd.text(newVal);
+                            var old = $('#numbersp').attr('href');
+                            $('#numbersp').attr('href',old.substring(0,22)+newVal);
                         });
                     </script>
                     <!--quantity-->
 
-                    <a href="addToCart?<%=p.getIdsp()%>" class="add-to item_add hvr-skew-backward">Add to cart</a>
+                    <a id="numbersp" href="addToCart?id=<%=p.getIdsp()%>&num=1" class="add-to item_add hvr-skew-backward">Add to cart</a>
                     <div class="clearfix"> </div>
                 </div>
 

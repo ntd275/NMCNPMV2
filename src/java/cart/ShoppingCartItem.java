@@ -33,8 +33,8 @@ public class ShoppingCartItem {
         this.quantity = quantity;
     }
 
-    public void incrementQuantity() {
-        quantity++;
+    public void incrementQuantity(int num) {
+        quantity+= num;
     }
 
     public void decrementQuantity() {

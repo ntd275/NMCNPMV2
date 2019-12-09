@@ -43,7 +43,7 @@
                                     <h6><a href="product?<%=product.getIdsp()%>"><%=product.getTenSanPham()%></a></h6>
                                 </div>
                                 <div class="img item_add">
-                                    <a href="addToCart?<%=product.getIdsp()%>"><img src="images/ca.png" alt=""></a>
+                                    <a href="addToCart?id=<%=product.getIdsp()%>"><img src="images/ca.png" alt=""></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>

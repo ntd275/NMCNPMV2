@@ -31,7 +31,7 @@
                                         <h6><a href="<c:url value='product?${product.getIdsp()}'/>">${product.getTenSanPham()}</a></h6>
                                     </div>
                                     <div class="img item_add">
-                                        <a href="<c:url value='addToCart?${product.getIdsp()}'/>"><img src="images/ca.png" alt=""></a>
+                                        <a href="<c:url value='addToCart?id=${product.getIdsp()}'/>"><img src="images/ca.png" alt=""></a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -68,7 +68,7 @@
                                         <h6><a href="<c:url value='product?${product.getIdsp()}'/>">${product.getTenSanPham()}</a></h6>
                                     </div>
                                     <div class="img item_add">
-                                        <a href="<c:url value='addToCart?${product.getIdsp()}'/>"><img src="images/ca.png" alt=""></a>
+                                        <a href="<c:url value='addToCart?id=${product.getIdsp()}'/>"><img src="images/ca.png" alt=""></a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -110,7 +110,7 @@
                                         <h6><a href="<c:url value='product?${product.getIdsp()}'/>">${product.getTenSanPham()}</a></h6>
                                     </div>
                                     <div class="img item_add">
-                                        <a href="<c:url value='addToCart?${product.getIdsp()}'/>"><img src="images/ca.png" alt=""></a>
+                                        <a href="<c:url value='addToCart?id=${product.getIdsp()}'/>"><img src="images/ca.png" alt=""></a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -147,7 +147,7 @@
                                         <h6><a href="<c:url value='product?${product.getIdsp()}'/>">${product.getTenSanPham()}</a></h6>
                                     </div>
                                     <div class="img item_add">
-                                        <a href="<c:url value='addToCart?${product.getIdsp()}'/>"><img src="images/ca.png" alt=""></a>
+                                        <a href="<c:url value='addToCart?id=${product.getIdsp()}'/>"><img src="images/ca.png" alt=""></a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
