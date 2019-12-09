@@ -7,7 +7,7 @@
 <!--login-->
 <div class="container">
     <div class="login">
-        <form action="login" method="get">
+        <form action="login" method="post">
             <%
                 String error = (String)request.getAttribute("error");
                 if(error != null){
