@@ -46,7 +46,7 @@
                         <div class="mid-1">
                             <div class="women">
                                 <div class="women-top">
-                                    <span>${product.getLoai()}</span>
+                                    <span><%= product.getLoai() %></span>
                                     <h6><a href="editproduct?<%=product.getIdsp()%>"><%=product.getTenSanPham()%></a></h6>
                                 </div>
                                 

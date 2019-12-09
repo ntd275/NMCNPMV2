@@ -18,9 +18,9 @@
                 </div>
                 <label>Loai:</label>
                 <select name="txtcategory" class="custom-select">
-                    <option selected>bottom</option>
-                    <option value="L">top</option>
-                    <option value="M">shoes</option>
+                    <option selected value="bottom">bottom</option>
+                    <option value="top">top</option>
+                    <option value="shoes">shoes</option>
                 </select>
                 <div class="form-group">
                     <label for="txtbrand">Gia tien:</label>

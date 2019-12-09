@@ -75,7 +75,7 @@ public class ControllerServlet extends HttpServlet {
                         if (user.getIdkh().equals("admin")) {
                             userPath = "/adminindex";
                             request.getRequestDispatcher(userPath).forward(request, response);
-                        } else if ("1".equals((String)request.getAttribute("checkout"))) {
+                        } else if ("1".equals((String) request.getAttribute("checkout"))) {
                             userPath = "/checkout";
                         } else {
                             userPath = "/index";
@@ -209,12 +209,15 @@ public class ControllerServlet extends HttpServlet {
             // get user input from request
             int num;
             String productId = request.getParameter("id");
-            String number = (String)request.getParameter("num");
-            if(number == null) num = 1;
-            else num = Integer.parseInt(number);
+            String number = (String) request.getParameter("num");
+            if (number == null) {
+                num = 1;
+            } else {
+                num = Integer.parseInt(number);
+            }
             if (!productId.isEmpty()) {
                 SanPham product = ProductSB.find(productId);
-                cart.addItem(product,num);
+                cart.addItem(product, num);
                 request.setAttribute("title", product.getLoai());
             }
             String userView = (String) session.getAttribute("view");
@@ -233,10 +236,19 @@ public class ControllerServlet extends HttpServlet {
                 session.setAttribute("cart", cart);
             }
             // get user input from request
-            String productId = request.getQueryString();
-            if (!productId.isEmpty()) {
+            String productId = (String) request.getParameter("id");
+            String num = (String) request.getParameter("num");
+            boolean ok = true;
+            try {
+                if (Integer.parseInt(num) < 0) {
+                    num = "0";
+                }
+            } catch (Exception e) {
+                ok = false;
+            }
+            if (ok && !productId.isEmpty()) {
                 SanPham product = ProductSB.find(productId);
-                cart.update(product, "0");
+                cart.update(product, num);
             }
             String userView = (String) session.getAttribute("view");
             userPath = userView;

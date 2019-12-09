@@ -8,8 +8,7 @@
 <%@page import="cart.ShoppingCart"%>
 <%@page import="cart.ShoppingCartItem"%>
 
-<%    
-    session.setAttribute("view", "/viewCart");
+<%    session.setAttribute("view", "/viewCart");
 %>
 
 <jsp:include page="banner-top.jsp"></jsp:include>
@@ -42,9 +41,19 @@
                             <div class="clearfix"> </div>
                         </td>
                         <td>$<%= item.getProduct().getGiaTien()%></td>
-                        <td><%= item.getQuantity()%></td>
+                        <td>
+                            <form action="update" method="get">
+                                <div>
+                                    <input type="text" name="num" value="<%= item.getQuantity()%>" style="width: 50%; text-align: center" >
+                                    <input type="text" name="id" value="<%=item.getProduct().getIdsp()%>" hidden>
+                                </div>
+                                <div  style="margin-top: 10px; width: 50%">
+                                    <input class="item_add hvr-skew-backward" type="submit" value="update">
+                                </div>
+                            </form>
+                        </td>
                         <td class="item_price">$<%= item.getTotal()%></td>
-                        <td class="add-check"><a class="item_add hvr-skew-backward" href="update?<%= item.getProduct().getIdsp()%>">Delete</a></td>
+                        <td class="add-check"><a class="item_add hvr-skew-backward" href="update?id=<%= item.getProduct().getIdsp()%>&num=0">Delete</a></td>
                     </tr>
                     <%
                             }
@@ -53,7 +62,7 @@
                 </table>
             </div>
         </div>
-        <% 
+        <%
             if (cart.getNumberOfItems() != 0) {
         %>
         <div class="produced">
