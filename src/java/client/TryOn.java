@@ -59,8 +59,8 @@ public class TryOn {
 
             connection.setUseCaches(false);
             connection.setDoOutput(true);
-            connection.setConnectTimeout(100000);
-            connection.setReadTimeout(100000);
+            connection.setConnectTimeout(1000000);
+            connection.setReadTimeout(1000000);
             //Send request
             DataOutputStream wr = new DataOutputStream(
                     connection.getOutputStream());
@@ -112,7 +112,7 @@ public class TryOn {
         try {
             System.out.println(imgPer);
             System.out.println(input.get(imgIndex));
-            output = executePost(imgPer, input.get(imgIndex), Integer.toString(imgIndex), "T", "192.168.43.111:8000");
+            output = executePost(imgPer, input.get(imgIndex), Integer.toString(imgIndex), "F", "192.168.43.111:8000");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

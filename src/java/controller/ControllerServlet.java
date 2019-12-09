@@ -126,7 +126,7 @@ public class ControllerServlet extends HttpServlet {
             //System.out.println(userPath);
             if (categoryId.equals("Sale")) {
                 List<SanPham> categoryProducts;
-                categoryProducts = (List<SanPham>) ProductSB.findRange(new int[]{0, 9});
+                categoryProducts = (List<SanPham>) ProductSB.FindSale();
                 session.setAttribute("categoryProducts", categoryProducts);
                 session.setAttribute("try", "false");
                 request.setAttribute("title", categoryId);

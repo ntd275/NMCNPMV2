@@ -26,7 +26,7 @@ public class ControllerServletListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         context = sce.getServletContext();
         context.setAttribute("newProducts", productSessionBean.findRange(new int[]{0, 8}));
-        context.setAttribute("trendProducts", productSessionBean.FindByCategory("Top"));
+        context.setAttribute("trendProducts", productSessionBean.FindSale());
     }
     @Override
     public void contextDestroyed(ServletContextEvent sce) {

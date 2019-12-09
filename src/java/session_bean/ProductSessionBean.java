@@ -37,6 +37,12 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
                 .setParameter("name", categoryname)
                 .getResultList();
     }
+    
+    public List<SanPham> FindSale() {
+        return em.createQuery(
+                "SELECT c.idsp FROM SPGiamGia c") 
+                .getResultList();
+    }
 
     public SanPham FindByID(String id) {
         return (SanPham) em.createQuery(
@@ -108,4 +114,6 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
                 .setMaxResults(9)
                 .getResultList();
     }
+    
+    
 }
