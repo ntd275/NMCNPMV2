@@ -40,12 +40,14 @@ public class OrderedProductSessionBean extends
                 .setParameter(3, order.getSoLuongSP())
                 .setParameter(4, order.getTrangThai())
                 .executeUpdate();
+        em.getEntityManagerFactory().getCache().evictAll();
     }
 
     public List<DonHang> findByOrderId(String id) {
         return em.createQuery(
                 "SELECT c FROM DonHang c WHERE c.donHangPK.maGiaoDich = :orderid")
                 .setParameter("orderid", id)
+                .setHint("org.hibernate.cacheMode", "IGNORE")
                 .getResultList();
     }
     

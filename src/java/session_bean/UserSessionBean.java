@@ -34,6 +34,7 @@ public class UserSessionBean extends AbstractSessionBean<KhachHang> {
         return (KhachHang)em.createQuery(
                 "SELECT c FROM KhachHang c WHERE c.tenDangNhap = :name")
                 .setParameter("name", username)
+                .setHint("org.hibernate.cacheMode", "IGNORE")
                 .getSingleResult();
     }
     
@@ -48,5 +49,6 @@ public class UserSessionBean extends AbstractSessionBean<KhachHang> {
                         .setParameter(6,user.getEmail())
                         .setParameter(7,user.getDiaChi())
                         .executeUpdate();
+                em.getEntityManagerFactory().getCache().evictAll();
     }
 }

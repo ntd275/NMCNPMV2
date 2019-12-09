@@ -24,6 +24,7 @@ import java.util.Map;
 
 @WebServlet(name = "ControllerServlet",
         urlPatterns = {"/ControllerServlet",
+            "/index",
             "/category",
             "/product",
             "/addToCart",
@@ -159,7 +160,7 @@ public class ControllerServlet extends HttpServlet {
                 List<SanPham> categoryProducts;
                 categoryProducts = (List<SanPham>) ProductSB.findPagebyCategory(categoryId, pageNumber);
                 session.setAttribute("categoryProducts", categoryProducts);
-                int numberpage = ProductSB.FindByCategory(categoryId).size() / 9 + 1;
+                int numberpage = (ProductSB.FindByCategory(categoryId).size()-1) / 9 + 1;
                 request.setAttribute("page", pageNumber);
                 request.setAttribute("numberpage", numberpage);
                 session.setAttribute("try", "false");
@@ -232,8 +233,8 @@ public class ControllerServlet extends HttpServlet {
                 request.setAttribute("title", product.getLoai());
             }
             String userView = (String) session.getAttribute("view");
-
             userPath = userView;
+            request.getRequestDispatcher(userPath).forward(request, response);
         }
 
         if (userPath.equals("/update")) {

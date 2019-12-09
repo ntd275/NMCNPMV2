@@ -35,12 +35,14 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
         return em.createQuery(
                 "SELECT c FROM SanPham c WHERE c.loai = :name")
                 .setParameter("name", categoryname)
+                .setHint("org.hibernate.cacheMode", "IGNORE")
                 .getResultList();
     }
     
     public List<SanPham> FindSale() {
         return em.createQuery(
                 "SELECT c.idsp FROM SPGiamGia c") 
+                .setHint("org.hibernate.cacheMode", "IGNORE")
                 .getResultList();
     }
        public List<SanPham> FindSalePage(int page) {
@@ -48,6 +50,7 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
                 "SELECT c.idsp FROM SPGiamGia c") 
                 .setFirstResult((page-1)*9)
                 .setMaxResults(9)
+                .setHint("org.hibernate.cacheMode", "IGNORE")
                 .getResultList();
     }
 
@@ -55,6 +58,7 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
         return (SanPham) em.createQuery(
                 "SELECT c FROM SanPham c WHERE c.idsp = :id")
                 .setParameter("id", id)
+                .setHint("org.hibernate.cacheMode", "IGNORE")
                 .getSingleResult();
     }
 
@@ -62,6 +66,7 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
         SanPham last = (SanPham) em.createQuery(
                 "SELECT c FROM SanPham c ORDER BY c.idsp DESC")
                 .setMaxResults(1)
+                .setHint("org.hibernate.cacheMode", "IGNORE")
                 .getSingleResult();
         String curID = last.getIdsp();
         return "SP" + Integer.toString(1 + Integer.parseInt(curID.substring(2)));
@@ -118,6 +123,7 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
                 .setParameter("name", categoryname)
                 .setFirstResult((page - 1) * 9)
                 .setMaxResults(9)
+                .setHint("org.hibernate.cacheMode", "IGNORE")
                 .getResultList();
     }
     

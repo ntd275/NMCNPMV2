@@ -68,6 +68,7 @@ public class ProductDetailSessionBean extends AbstractSessionBean<LinkAnh> {
         return (LinkAnh) em.createQuery(
                 "SELECT c FROM LinkAnh c WHERE c.idsp.idsp = :id")
                 .setParameter("id", id)
+                .setHint("org.hibernate.cacheMode", "IGNORE")
                 .getSingleResult();
     }
 }

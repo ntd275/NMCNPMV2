@@ -6,9 +6,10 @@
 <%@page import="java.util.List"%>
 <%@page import="entity.SanPham"%>
 <%@page import="entity.LinkAnh"%>
-<%    session.setAttribute("view", "/product");
+<%    
     SanPham p = (SanPham) session.getAttribute("product");
     LinkAnh pd = (LinkAnh) session.getAttribute("images");
+    session.setAttribute("view", "/product?"+p.getIdsp());
 %>
 <jsp:include page="banner-top.jsp"></jsp:include>
     <div class="single">

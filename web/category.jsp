@@ -7,7 +7,8 @@
 
 <%@page import="java.util.List"%>
 <%@page import="entity.SanPham"%>
-<%    session.setAttribute("view", "/category");
+<%    
+    session.setAttribute("view", "/category?cat="+(String)request.getAttribute("cat")+"&page="+(String)request.getParameter("page"));
 %>
 <jsp:include page="banner-top.jsp"></jsp:include>
     <div class="product">

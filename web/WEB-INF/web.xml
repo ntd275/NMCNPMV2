@@ -21,6 +21,7 @@
         <servlet-name>ControllerServlet</servlet-name>
         <url-pattern>/ControllerServlet</url-pattern>
         <url-pattern>/category</url-pattern>
+        <url-pattern>/index</url-pattern>
         <url-pattern>/product</url-pattern>
         <url-pattern>/addToCart</url-pattern>
         <url-pattern>/viewCart</url-pattern>

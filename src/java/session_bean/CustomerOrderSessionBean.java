@@ -50,15 +50,16 @@ public class CustomerOrderSessionBean extends
                 .setParameter(6, order.getEmail())
                 .setParameter(7, order.getSoDT())
                 .executeUpdate();
+        em.getEntityManagerFactory().getCache().evictAll();
     }
 
     public GiaoDich findByCustomer(Object customer) {
         return (GiaoDich) em.createNamedQuery("CustomerOrder.findByCustomer").setParameter("customer",
-                customer).getSingleResult();
+                customer).setHint("org.hibernate.cacheMode", "IGNORE").getSingleResult();
     }
     
     public String getNewOrderId() {
-        List<GiaoDich> order = em.createQuery("SELECT c FROM GiaoDich c").getResultList();
+        List<GiaoDich> order = em.createQuery("SELECT c FROM GiaoDich c").setHint("org.hibernate.cacheMode", "IGNORE").getResultList();
         if (order == null) {
             return "1";
         } else {
