@@ -44,11 +44,13 @@ public class ControllerServlet extends HttpServlet {
     private ProductDetailSessionBean ProductDetailSB;
     @EJB
     private UserSessionBean UserSB;
+    @EJB
     private OrderManager orderManager;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
 
@@ -70,7 +72,14 @@ public class ControllerServlet extends HttpServlet {
                         request.setAttribute("error", "Wrong Password");
                     } else {
                         session.setAttribute("user", user);
-                        userPath = "/index";
+                        if (user.getIdkh().equals("admin")) {
+                            userPath = "/adminindex";
+                            request.getRequestDispatcher(userPath).forward(request, response);
+                        } else if ("1".equals((String)request.getAttribute("checkout"))) {
+                            userPath = "/checkout";
+                        } else {
+                            userPath = "/index";
+                        }
                     }
                 }
             }
@@ -84,6 +93,11 @@ public class ControllerServlet extends HttpServlet {
             request.setAttribute("title", "Profile");
         }
         if (userPath.equals("/checkout")) {
+            KhachHang kh = (KhachHang) session.getAttribute("user");
+            if (kh == null) {
+                request.setAttribute("checkout", "1");
+                request.getRequestDispatcher("/login").forward(request, response);
+            }
             request.setAttribute("title", "Checkout");
         }
         if (userPath.equals("/register")) {
@@ -161,7 +175,7 @@ public class ControllerServlet extends HttpServlet {
                 product = (SanPham) ProductSB.find(productId);
                 session.setAttribute("product", product);
                 LinkAnh images;
-                images = (LinkAnh) ProductDetailSB.find(productId);
+                images = (LinkAnh) ProductDetailSB.FindByID(productId);
                 if (images == null) {
                     System.out.println("null");
                 }
@@ -172,13 +186,13 @@ public class ControllerServlet extends HttpServlet {
 
         if (userPath.equals("/viewCart")) {
             String clear = request.getParameter("clear");
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
             request.setAttribute("title", "View Cart");
+            if (cart == null) {
+                cart = new ShoppingCart();
+                session.setAttribute("cart", cart);
+            }
             if ((clear != null) && clear.equals("true")) {
-                ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-                if (cart == null) {
-                    cart = new ShoppingCart();
-                    session.setAttribute("cart", cart);
-                }
                 cart.clear();
             }
         }
@@ -245,6 +259,7 @@ public class ControllerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
         Validator validator = new Validator();
+        String orderId;
 
         if (userPath.equals("/updateCart")) {
             String productId = request.getParameter("productId");
@@ -257,7 +272,10 @@ public class ControllerServlet extends HttpServlet {
                 cart.update(product, quantity);
             }
             userPath = "/viewCart";
-        } else if (userPath.equals("/purchase")) {
+        }
+
+        if (userPath.equals("/purchase")) {
+            KhachHang customer = (KhachHang) session.getAttribute("user");
             if (cart != null) {
                 String name = request.getParameter("name");
                 String email = request.getParameter("email");
@@ -273,20 +291,18 @@ public class ControllerServlet extends HttpServlet {
                             validationErrorFlag);
                     userPath = "/checkout";
                 } else {
-                    String orderId = orderManager.placeOrder(name, email, phone,
+                    orderId = orderManager.placeOrder(customer, name, email, phone,
                             address, cart);
-                    String language = "";
                     if (!orderId.equals("0")) {
                         // in case language was set using toggle, get
                         //language choice before destroying session 
-                        Locale locale = (Locale) session.getAttribute("javax.servlet.jsp.jstl.fmt.locale.session");
-                        if (locale != null) {
-                            language = (String) locale.getLanguage();
-                        }
+                        //Locale locale = (Locale) session.getAttribute("javax.servlet.jsp.jstl.fmt.locale.session");
+                        //if (locale != null) {
+                        //    language = (String) locale.getLanguage();
+                        //}
                         // dissociate shopping cart from session
-                        cart = null;
-                        // end session
-                        session.invalidate();
+                        String language = "en";
+                        session.removeAttribute("cart");
                         if (!language.isEmpty()) { //
                             //                    if user                  
                             //                          changed                    
@@ -308,11 +324,13 @@ public class ControllerServlet extends HttpServlet {
                         request.setAttribute("orderedProducts",
                                 orderMap.get("orderedProducts"));
                         userPath = "/confirmation";
+                        request.setAttribute("title", "Confirmation");
                         // otherwise, send back to checkout page and display error
 
                     } else {
                         userPath = "/checkout";
                         request.setAttribute("orderFailureFlag", true);
+                        request.setAttribute("title", "Checkout");
                     }
                 }
             }

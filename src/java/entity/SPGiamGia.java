@@ -48,13 +48,9 @@ public class SPGiamGia implements Serializable {
     @NotNull
     @Column(name = "HeSoGiam")
     private int heSoGiam;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "ThoiGianBD")
     @Temporal(TemporalType.TIMESTAMP)
     private Date thoiGianBD;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "ThoiGianKT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date thoiGianKT;
@@ -69,11 +65,9 @@ public class SPGiamGia implements Serializable {
         this.maGiamGia = maGiamGia;
     }
 
-    public SPGiamGia(String maGiamGia, int heSoGiam, Date thoiGianBD, Date thoiGianKT) {
+    public SPGiamGia(String maGiamGia, int heSoGiam) {
         this.maGiamGia = maGiamGia;
         this.heSoGiam = heSoGiam;
-        this.thoiGianBD = thoiGianBD;
-        this.thoiGianKT = thoiGianKT;
     }
 
     public String getMaGiamGia() {

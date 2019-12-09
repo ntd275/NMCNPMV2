@@ -13,6 +13,10 @@
         <servlet-name>ControllerServlet</servlet-name>
         <servlet-class>controller.ControllerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminControllerServlet</servlet-name>
+        <servlet-class>controller.AdminControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControllerServlet</servlet-name>
         <url-pattern>/ControllerServlet</url-pattern>
@@ -29,6 +33,21 @@
         <url-pattern>/tryOn</url-pattern>
         <url-pattern>/checkout</url-pattern>
         <url-pattern>/confirmation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminControllerServlet</servlet-name>
+        <url-pattern>/AdminControllerServlet</url-pattern>
+        <url-pattern>/adminindex</url-pattern>
+        <url-pattern>/addproduct</url-pattern>
+        <url-pattern>/preview</url-pattern>
+        <url-pattern>/addproducttodb</url-pattern>
+        <url-pattern>/managerorder</url-pattern>
+        <url-pattern>/giaohang</url-pattern>
+        <url-pattern>/deleteorder</url-pattern>
+        <url-pattern>/deleteproduct</url-pattern>
+        <url-pattern>/editproduct</url-pattern>
+        <url-pattern>/updateproducttodb</url-pattern>
+        <url-pattern>/updateproduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -61,8 +80,14 @@
         <jsp-property-group>
             <description>JSP configuration for the admin console
             </description>
-            <url-pattern>/admin/*</url-pattern>
-            <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
+            <url-pattern>/adminindex.jsp</url-pattern>
+            <url-pattern>/addproduct.jsp</url-pattern>
+            <url-pattern>/preview.jsp</url-pattern>
+            <url-pattern>/managerorder.jsp</url-pattern>
+            <url-pattern>/editproduct.jsp</url-pattern>
+            
+            
+            <include-prelude>/WEB-INF/jspf/header_admin.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
     </jsp-config>

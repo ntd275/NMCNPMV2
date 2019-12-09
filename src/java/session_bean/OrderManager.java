@@ -12,6 +12,7 @@ import entity.GiaoDich;
 import entity.DonHang;
 import entity.DonHangPK;
 import entity.SanPham;
+import static java.lang.Integer.parseInt;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -31,6 +32,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -47,18 +49,16 @@ public class OrderManager {
     @EJB
     private OrderedProductSessionBean orderedProductSB;
     @EJB
-    private CustomerSessionBean customerSB;
-
+    private UserSessionBean customerSB;
     @PersistenceContext(unitName = "FontendPU")
     private EntityManager em;
     @Resource
     private SessionContext context;
-
+    
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public String placeOrder(String name, String email, String phone, String address, ShoppingCart cart) {
+    public String placeOrder(KhachHang customer, String name, String email, String phone, String address, ShoppingCart cart) {
         try {
-            KhachHang customer = addCustomer(name, email, phone, address);
-            GiaoDich order = addOrder(customer, cart);
+            GiaoDich order = addOrder(customer, name, email, phone, address, cart);
             addOrderedItems(order, cart);
             return order.getMaGiaoDich();
         } catch (Exception e) {
@@ -68,22 +68,17 @@ public class OrderManager {
         }
     }
 
-    private KhachHang addCustomer(String name, String email, String phone,
-            String address) {
-        KhachHang customer = new KhachHang();
-        customer.setTenKH(name);
-        customer.setEmail(email);
-        customer.setSoDT(phone);
-        customer.setDiaChi(address);
-        customerSB.create(customer);
-        return customer;
-    }
-
-    private GiaoDich addOrder(KhachHang customer, ShoppingCart cart) {
+    private GiaoDich addOrder(KhachHang customer, String name,String email,String phone,String address, ShoppingCart cart) {
         // set up customer order
         GiaoDich order = new GiaoDich();
+        order.setDiaChiNhanHang(address);
         order.setIdkh(customer);
-        order.setTongThanhToan(((int)cart.getTotal()));
+        order.setTongThanhToan(((int)cart.getTotal() + 5));
+        order.setEmail(email);
+        order.setSoDT(phone);
+        order.setIdkh(customer);
+        order.setTenNguoiNhan(name);
+        order.setMaGiaoDich(customerOrderSB.getNewOrderId());
         customerOrderSB.create(order);
         return order;
     }
@@ -99,6 +94,7 @@ public class OrderManager {
             orderedProductPK.setIdsp(productId);
             // create ordered item using PK object
             DonHang orderedItem = new DonHang(orderedProductPK);
+            orderedItem.setTrangThai("Dang giao");
             // set quantity
             orderedItem.setSoLuongSP(scItem.getQuantity());
             orderedProductSB.create(orderedItem);

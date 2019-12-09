@@ -11,9 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,7 +28,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "LinkAnh.findAll", query = "SELECT l FROM LinkAnh l")
-    , @NamedQuery(name = "LinkAnh.findByIdsp", query = "SELECT l FROM LinkAnh l WHERE l.idsp = :idsp")
     , @NamedQuery(name = "LinkAnh.findByAnh1", query = "SELECT l FROM LinkAnh l WHERE l.anh1 = :anh1")
     , @NamedQuery(name = "LinkAnh.findByAnh2", query = "SELECT l FROM LinkAnh l WHERE l.anh2 = :anh2")
     , @NamedQuery(name = "LinkAnh.findByAnh3", query = "SELECT l FROM LinkAnh l WHERE l.anh3 = :anh3")
@@ -41,10 +40,7 @@ public class LinkAnh implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "IDSP")
-    private String idsp;
-    @Size(max = 200)
+    @Size(min = 1, max = 200)
     @Column(name = "Anh1")
     private String anh1;
     @Size(max = 200)
@@ -62,23 +58,15 @@ public class LinkAnh implements Serializable {
     @Size(max = 200)
     @Column(name = "Anh6")
     private String anh6;
-    @JoinColumn(name = "IDSP", referencedColumnName = "IDSP", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private SanPham sanPham;
+    @JoinColumn(name = "IDSP", referencedColumnName = "IDSP")
+    @ManyToOne(optional = false)
+    private SanPham idsp;
 
     public LinkAnh() {
     }
 
-    public LinkAnh(String idsp) {
-        this.idsp = idsp;
-    }
-
-    public String getIdsp() {
-        return idsp;
-    }
-
-    public void setIdsp(String idsp) {
-        this.idsp = idsp;
+    public LinkAnh(String anh1) {
+        this.anh1 = anh1;
     }
 
     public String getAnh1() {
@@ -129,18 +117,18 @@ public class LinkAnh implements Serializable {
         this.anh6 = anh6;
     }
 
-    public SanPham getSanPham() {
-        return sanPham;
+    public SanPham getIdsp() {
+        return idsp;
     }
 
-    public void setSanPham(SanPham sanPham) {
-        this.sanPham = sanPham;
+    public void setIdsp(SanPham idsp) {
+        this.idsp = idsp;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idsp != null ? idsp.hashCode() : 0);
+        hash += (anh1 != null ? anh1.hashCode() : 0);
         return hash;
     }
 
@@ -151,7 +139,7 @@ public class LinkAnh implements Serializable {
             return false;
         }
         LinkAnh other = (LinkAnh) object;
-        if ((this.idsp == null && other.idsp != null) || (this.idsp != null && !this.idsp.equals(other.idsp))) {
+        if ((this.anh1 == null && other.anh1 != null) || (this.anh1 != null && !this.anh1.equals(other.anh1))) {
             return false;
         }
         return true;
@@ -159,7 +147,7 @@ public class LinkAnh implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.LinkAnh[ idsp=" + idsp + " ]";
+        return "entity.LinkAnh[ anh1=" + anh1 + " ]";
     }
     
 }

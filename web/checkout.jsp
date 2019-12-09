@@ -45,10 +45,6 @@
                     },
                     address: {
                         required: true
-                    },
-                    creditcard: {
-                        required: true,
-                        creditcard: true
                     }
                 }
             });
@@ -60,14 +56,14 @@
             <h1>Please confirm your order</h1>
         </div>
         <div class="row">
-            <h3 style="margin-left: 14px"> Ship your order to&hellip;</h3>
+            <h3 style="margin-left: 14px; margin-bottom: 14px;"> Ship your order to&hellip;</h3>
             <div class="list-group">
                 <div class="list-group-item">
                     <div class="list-group-item-heading">          
                         <div class="row">
 
                             <div class="col-xs-7">                      
-                                <form role="form" id="checkoutForm" method="post">
+                                <form role="form" id="checkoutForm" action="confirmation" method="post">
                                     <input type="hidden" name ="userpath" id="userpath" value="/purchase">
                                     <div class="form-group">
                                         <label for="name">Name</label>

@@ -36,6 +36,7 @@ public class ShoppingCart {
             ShoppingCartItem scItem = new ShoppingCartItem(product);
             items.add(scItem);
         }
+        total = this.getSubtotal();
     }
 
     public synchronized void update(SanPham product, String quantity) {

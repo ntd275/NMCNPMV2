@@ -41,9 +41,7 @@ public class DonHang implements Serializable {
     @NotNull
     @Column(name = "SoLuongSP")
     private int soLuongSP;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
+    @Size(max = 30)
     @Column(name = "TrangThai")
     private String trangThai;
     @JoinColumn(name = "MaGiaoDich", referencedColumnName = "MaGiaoDich", insertable = false, updatable = false)
@@ -60,10 +58,9 @@ public class DonHang implements Serializable {
         this.donHangPK = donHangPK;
     }
 
-    public DonHang(DonHangPK donHangPK, int soLuongSP, String trangThai) {
+    public DonHang(DonHangPK donHangPK, int soLuongSP) {
         this.donHangPK = donHangPK;
         this.soLuongSP = soLuongSP;
-        this.trangThai = trangThai;
     }
 
     public DonHang(String maGiaoDich, String idsp) {

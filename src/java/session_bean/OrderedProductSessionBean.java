@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import entity.*;
 
 /**
  *
@@ -31,8 +32,50 @@ public class OrderedProductSessionBean extends
         super(DonHang.class);
     }
 
-    public List<DonHang> findByOrderId(Object id) {
-        return em.createNamedQuery("OrderedProduct.findByOrderId").setParameter("orderId",
-                id).getResultList();
+    @Override
+    public void create(DonHang order) {
+        em.createNativeQuery("INSERT INTO DonHang VALUES(?,?,?,?)")
+                .setParameter(1, order.getDonHangPK().getMaGiaoDich())
+                .setParameter(2, order.getDonHangPK().getIdsp())
+                .setParameter(3, order.getSoLuongSP())
+                .setParameter(4, order.getTrangThai())
+                .executeUpdate();
+    }
+
+    public List<DonHang> findByOrderId(String id) {
+        return em.createQuery(
+                "SELECT c FROM DonHang c WHERE c.donHangPK.maGiaoDich = :orderid")
+                .setParameter("orderid", id)
+                .getResultList();
+    }
+    
+    public void remove(DonHangPK k){
+        em.createNativeQuery(
+                "DELETE FROM DonHang WHERE MaGiaoDich= ? and IDSP= ?")
+                        .setHint("org.hibernate.cacheMode", "IGNORE")
+                        .setParameter(1,k.getMaGiaoDich())
+                        .setParameter(2,k.getIdsp())
+                        .executeUpdate();
+        em.getEntityManagerFactory().getCache().evictAll();
+    }
+    
+    public void updateTrangThai(DonHangPK k){
+        em.createNativeQuery(
+                "UPDATE DonHang SET TrangThai='Da Giao' WHERE MaGiaoDich= ? and IDSP= ?")
+                        .setHint("org.hibernate.cacheMode", "IGNORE")
+                        .setParameter(1,k.getMaGiaoDich())
+                        .setParameter(2,k.getIdsp())
+                        .executeUpdate();
+        em.getEntityManagerFactory().getCache().evictAll();
+    }
+    
+    public void removeSP(String id){
+        em.createNativeQuery(
+                "DELETE FROM DonHang WHERE IDSP = ?")
+                        .setHint("org.hibernate.cacheMode", "IGNORE")
+                        .setParameter(1,id)
+                        .executeUpdate();
+        em.getEntityManagerFactory().getCache().evictAll();
+  
     }
 }

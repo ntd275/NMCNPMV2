@@ -124,29 +124,6 @@
             </div>
 
         </div>
-        <div> <nav aria-label="Page navigation example" >
-                <ul class="pagination" style="    position: absolute;left: 50%; transform: translateX(-50%);">
-                    <li class="page-item ">
-                        <a class="page-link"><<</a>
-                    </li>
-                    <li class="page-item ">
-                        <a class="page-link" tabindex="-1"><</a>
-                    </li>
-                    <li class="page-item active"><a class="page-link">1 <span class="sr-only">(current)</span></a></li>
-                    <li class="page-item">
-                        <a class="page-link">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link">3</a></li>
-                    <li class="page-item ">
-                        <a class="page-link">></a>
-                    </li>
-                    <li class="page-item ">
-                        <a class="page-link">>></a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="clearfix"></div>
-        </div>
         <div class="container">
             <jsp:include page="brand.jsp"></jsp:include>
         </div>

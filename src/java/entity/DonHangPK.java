@@ -21,7 +21,7 @@ public class DonHangPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 8)
+    @Size(min = 1, max = 4)
     @Column(name = "MaGiaoDich")
     private String maGiaoDich;
     @Basic(optional = false)

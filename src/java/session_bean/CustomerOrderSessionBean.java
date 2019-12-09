@@ -6,6 +6,8 @@
 package session_bean;
 
 import entity.GiaoDich;
+import static java.lang.Integer.parseInt;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,9 +38,39 @@ public class CustomerOrderSessionBean extends
         em.refresh(order);
         return order;
     }
+    
+    @Override
+    public void create(GiaoDich order) {
+        em.createNativeQuery("INSERT INTO GiaoDich VALUES(?,?,?,?,?,?,?)")
+                .setParameter(1, order.getMaGiaoDich())
+                .setParameter(2, order.getIdkh().getIdkh())
+                .setParameter(3, order.getDiaChiNhanHang())
+                .setParameter(4, order.getTongThanhToan())
+                .setParameter(5, order.getTenNguoiNhan())
+                .setParameter(6, order.getEmail())
+                .setParameter(7, order.getSoDT())
+                .executeUpdate();
+    }
 
     public GiaoDich findByCustomer(Object customer) {
         return (GiaoDich) em.createNamedQuery("CustomerOrder.findByCustomer").setParameter("customer",
                 customer).getSingleResult();
+    }
+    
+    public String getNewOrderId() {
+        List<GiaoDich> order = em.createQuery("SELECT c FROM GiaoDich c").getResultList();
+        if (order == null) {
+            return "1";
+        } else {
+            int a, max = 0;
+            String s;
+            for (GiaoDich x : order) {
+                a = parseInt(x.getMaGiaoDich());
+                if (a > max) {
+                    max = a;
+                }
+            }
+            return Integer.toString(max + 1);
+        }
     }
 }

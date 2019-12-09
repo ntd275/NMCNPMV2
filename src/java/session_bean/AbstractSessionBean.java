@@ -42,7 +42,7 @@ public abstract class AbstractSessionBean<T> {
         javax.persistence.criteria.CriteriaQuery cq
                 = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
-        return getEntityManager().createQuery(cq).getResultList();
+        return getEntityManager().createQuery(cq).setHint("org.hibernate.cacheMode", "IGNORE").getResultList();
     }
 
     public List<T> findRange(int[] range) {
@@ -52,7 +52,7 @@ public abstract class AbstractSessionBean<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         q.setMaxResults(range[1] - range[0]);
         q.setFirstResult(range[0]);
-        return q.getResultList();
+        return q.setHint("org.hibernate.cacheMode", "IGNORE").getResultList();
     }
 
     public int count() {
