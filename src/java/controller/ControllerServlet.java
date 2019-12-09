@@ -122,14 +122,20 @@ public class ControllerServlet extends HttpServlet {
         }
 
         if (userPath.equals("/category")) {
-            String categoryId = request.getQueryString();
+            String categoryId = request.getParameter("cat");
             //System.out.println(userPath);
             if (categoryId.equals("Sale")) {
+                int pageNumber = Integer.parseInt(request.getParameter("page"));
                 List<SanPham> categoryProducts;
-                categoryProducts = (List<SanPham>) ProductSB.FindSale();
+                int numberpage = (ProductSB.FindSale().size()-1)/9 +1;
+                categoryProducts = (List<SanPham>) ProductSB.FindSalePage(pageNumber);
                 session.setAttribute("categoryProducts", categoryProducts);
                 session.setAttribute("try", "false");
                 request.setAttribute("title", categoryId);
+                request.setAttribute("page", pageNumber);
+                request.setAttribute("numberpage", numberpage);
+                session.setAttribute("try", "false");
+                request.setAttribute("cat", categoryId);
             } else if (categoryId.equals("TryClothes")) {
                 List<SanPham> categoryProducts;
                 categoryProducts = new ArrayList<>();
@@ -149,10 +155,15 @@ public class ControllerServlet extends HttpServlet {
                 request.setAttribute("title", categoryId);
 
             } else if (categoryId != null) {
+                int pageNumber = Integer.parseInt(request.getParameter("page"));
                 List<SanPham> categoryProducts;
-                categoryProducts = (List<SanPham>) ProductSB.FindByCategory(categoryId);
+                categoryProducts = (List<SanPham>) ProductSB.findPagebyCategory(categoryId, pageNumber);
                 session.setAttribute("categoryProducts", categoryProducts);
+                int numberpage = ProductSB.FindByCategory(categoryId).size() / 9 + 1;
+                request.setAttribute("page", pageNumber);
+                request.setAttribute("numberpage", numberpage);
                 session.setAttribute("try", "false");
+                request.setAttribute("cat", categoryId);
                 request.setAttribute("title", categoryId);
             }
 

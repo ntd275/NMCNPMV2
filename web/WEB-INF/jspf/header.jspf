@@ -129,12 +129,11 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                                 <ul class="nav navbar-nav nav_1">
-                                    <li><a class="color" href="index.jsp">Home</a></li>
-                                    <li><a class="color2" href="<c:url value='category?Top'/>">Top</a></li>
-                                    <li><a class="color3" href="<c:url value='category?Bottom'/>">Bottom</a></li>                        
-                                    <li><a class="color4" href="<c:url value='category?Shoes'/>">Shoes</a></li>
-                                    <li><a class="color5" href="<c:url value='category?Sale'/>">Sale</a></li>
-                                    <li><a class="color9" href="<c:url value='category?TryClothes'/>">Try-on</a></li>
+                                    <li><a class="color2" href="<c:url value='category?cat=Top&page=1'/>">Top</a></li>
+                                    <li><a class="color3" href="<c:url value='category?cat=Bottom&page=1'/>">Bottom</a></li>                        
+                                    <li><a class="color4" href="<c:url value='category?cat=Shoes&page=1'/>">Shoes</a></li>
+                                    <li><a class="color5" href="<c:url value='category?cat=Sale&page=1'/>">Sale</a></li>
+                                    <li><a class="color9" href="<c:url value='category?cat=TryClothes'/>">Try-on</a></li>
                                     <li><a class="color6" href="<c:url value='contact'/>">Contact</a></li>
                                 </ul>
                             </div><!-- /.navbar-collapse -->

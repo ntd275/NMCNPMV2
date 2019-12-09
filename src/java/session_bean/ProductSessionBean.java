@@ -43,6 +43,13 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
                 "SELECT c.idsp FROM SPGiamGia c") 
                 .getResultList();
     }
+       public List<SanPham> FindSalePage(int page) {
+        return em.createQuery(
+                "SELECT c.idsp FROM SPGiamGia c") 
+                .setFirstResult((page-1)*9)
+                .setMaxResults(9)
+                .getResultList();
+    }
 
     public SanPham FindByID(String id) {
         return (SanPham) em.createQuery(
@@ -105,12 +112,11 @@ public class ProductSessionBean extends AbstractSessionBean<SanPham> {
         em.getEntityManagerFactory().getCache().evictAll();
     }
     
-    public List<SanPham> findPagebyCategory(String categoryname, String page) {
-        int pagenumber = parseInt(page);
+    public List<SanPham> findPagebyCategory(String categoryname, int page) {
         return em.createQuery(
                 "SELECT c FROM SanPham c WHERE c.loai = :name")
                 .setParameter("name", categoryname)
-                .setFirstResult((pagenumber - 1) * 9)
+                .setFirstResult((page - 1) * 9)
                 .setMaxResults(9)
                 .getResultList();
     }
