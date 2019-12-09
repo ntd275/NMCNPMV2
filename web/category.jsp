@@ -7,8 +7,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="entity.SanPham"%>
-<%    
-    session.setAttribute("view", "/category?cat="+(String)request.getAttribute("cat")+"&page="+(String)request.getParameter("page"));
+<%    session.setAttribute("view", "/category?cat=" + (String) request.getAttribute("cat") + "&page=" + (String) request.getParameter("page"));
 %>
 <jsp:include page="banner-top.jsp"></jsp:include>
     <div class="product">
@@ -63,7 +62,7 @@
                     <%
                         if (index % 3 == 0) {
                     %>
-                </div class ="row">
+                </div>
                 <%
                         }
                     }
@@ -116,7 +115,7 @@
                     <%
                         if (index % 3 == 0) {
                     %>
-                </div class ="row">
+                </div>
                 <%
                             }
                         }
@@ -125,11 +124,12 @@
                 <div class="clearfix"></div>
             </div>
             <%
-                int pagenumber = -1;
-                pagenumber = (Integer) request.getAttribute("page");
-                int numberpage = (Integer) request.getAttribute("numberpage");
-                String catid = (String) request.getAttribute("cat");
-                if ((pagenumber >= 1) && (pagenumber <= numberpage)) {
+                if (session.getAttribute("try").equals("false")) {
+                    int pagenumber = -1;
+                    pagenumber = (Integer) request.getAttribute("page");
+                    int numberpage = (Integer) request.getAttribute("numberpage");
+                    String catid = (String) request.getAttribute("cat");
+                    if ((pagenumber >= 1) && (pagenumber <= numberpage)) {
             %>     
             <div> <nav aria-label="Page navigation" >
                     <ul class="pagination" style="    position: absolute;left: 50%; transform: translateX(-50%);">
@@ -164,6 +164,7 @@
                             <a class="page-link" href="category?cat=<%= catid%>&page=<%= numberpage%>">>></a>
                         </li>
                         <%
+                                    }
                                 }
                             }
                         %>
@@ -172,19 +173,20 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-        <div class="container">
-            <jsp:include page="brand.jsp"></jsp:include>
-        </div>
-        <script src="js/jquery.chocolat.js"></script>
-        <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen" charset="utf-8">
-        <!--light-box-files -->
-        <script type="text/javascript" charset="utf-8">
-            $(function () {
-                $('a.picture').Chocolat();
-            });
-            $('.pagination li').click(function () {
-                $(this).addClass('active').siblings().removeClass('active');
-            });
-        </script>
-
     </div>
+    <div class="container">
+        <jsp:include page="brand.jsp"></jsp:include>
+    </div>
+    <script src="js/jquery.chocolat.js"></script>
+    <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen" charset="utf-8">
+    <!--light-box-files -->
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+            $('a.picture').Chocolat();
+        });
+        $('.pagination li').click(function () {
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+    </script>
+
+</div>
