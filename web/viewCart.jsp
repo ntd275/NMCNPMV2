@@ -43,13 +43,9 @@
                         <td>$<%= item.getProduct().getGiaTien()%></td>
                         <td>
                             <form action="update" method="get">
-                                <div>
                                     <input type="text" name="num" value="<%= item.getQuantity()%>" style="width: 50%; text-align: center" >
                                     <input type="text" name="id" value="<%=item.getProduct().getIdsp()%>" hidden>
-                                </div>
-                                <div  style="margin-top: 10px; width: 50%">
-                                    <input class="item_add hvr-skew-backward" type="submit" value="update">
-                                </div>
+                                    <input class="item_add hvr-skew-backward" type="submit" value="update" style="margin-left: 10px" >
                             </form>
                         </td>
                         <td class="item_price">$<%= item.getTotal()%></td>
