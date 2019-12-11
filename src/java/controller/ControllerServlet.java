@@ -55,9 +55,37 @@ public class ControllerServlet extends HttpServlet {
         String userPath = request.getServletPath();
         HttpSession session = request.getSession();
 
-        if(userPath.equals("/login")){
+        if (userPath.equals("/login")) {
             request.setAttribute("title", "Login");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            if (username != null) {
+                KhachHang user = null;
+                try {
+                    user = UserSB.FindByUserName(username);
+                } catch (Exception e) {
+
+                }
+                if (user == null) {
+                    request.setAttribute("error", "Invalid User Name");
+                } else {
+                    if (!user.getMatKhau().equals(password)) {
+                        request.setAttribute("error", "Wrong Password");
+                    } else {
+                        session.setAttribute("user", user);
+                        if (user.getIdkh().equals("admin")) {
+                            userPath = "/adminindex";
+                            request.getRequestDispatcher(userPath).forward(request, response);
+                        } else if ("1".equals((String) request.getAttribute("checkout"))) {
+                            userPath = "/checkout";
+                        } else {
+                            userPath = "/index";
+                        }
+                    }
+                }
+            }
         }
+
         if (userPath.equals("/logout")) {
             session.setAttribute("user", null);
             userPath = "/index";
@@ -68,7 +96,7 @@ public class ControllerServlet extends HttpServlet {
         if (userPath.equals("/checkout")) {
             KhachHang kh = (KhachHang) session.getAttribute("user");
             if (kh == null) {
-                session.setAttribute("checkout", "1");
+                request.setAttribute("checkout", "1");
                 request.getRequestDispatcher("/login").forward(request, response);
             }
             request.setAttribute("title", "Checkout");
@@ -100,7 +128,7 @@ public class ControllerServlet extends HttpServlet {
             if (categoryId.equals("Sale")) {
                 int pageNumber = Integer.parseInt(request.getParameter("page"));
                 List<SanPham> categoryProducts;
-                int numberpage = (ProductSB.FindSale().size() - 1) / 9 + 1;
+                int numberpage = (ProductSB.FindSale().size()-1)/9 +1;
                 categoryProducts = (List<SanPham>) ProductSB.FindSalePage(pageNumber);
                 session.setAttribute("categoryProducts", categoryProducts);
                 session.setAttribute("try", "false");
@@ -132,7 +160,7 @@ public class ControllerServlet extends HttpServlet {
                 List<SanPham> categoryProducts;
                 categoryProducts = (List<SanPham>) ProductSB.findPagebyCategory(categoryId, pageNumber);
                 session.setAttribute("categoryProducts", categoryProducts);
-                int numberpage = (ProductSB.FindByCategory(categoryId).size() - 1) / 9 + 1;
+                int numberpage = (ProductSB.FindByCategory(categoryId).size()-1) / 9 + 1;
                 request.setAttribute("page", pageNumber);
                 request.setAttribute("numberpage", numberpage);
                 session.setAttribute("try", "false");
@@ -232,9 +260,6 @@ public class ControllerServlet extends HttpServlet {
             }
             if (ok && !productId.isEmpty()) {
                 SanPham product = ProductSB.find(productId);
-                if (Integer.parseInt(num) > product.getSoLuong()) {
-                    num = Integer.toString(product.getSoLuong());
-                }
                 cart.update(product, num);
             }
             String userView = (String) session.getAttribute("view");
@@ -259,46 +284,11 @@ public class ControllerServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String userPath = request.getParameter("userpath");
-        if(userPath == null){
-            userPath = request.getServletPath();
-        }
         HttpSession session = request.getSession();
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
         Validator validator = new Validator();
         String orderId;
 
-        if (userPath.equals("/login")) {
-            request.setAttribute("title", "Login");
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            if (username != null) {
-                KhachHang user = null;
-                try {
-                    user = UserSB.FindByUserName(username);
-                } catch (Exception e) {
-
-                }
-                if (user == null) {
-                    request.setAttribute("error", "Invalid User Name");
-                } else {
-                    if (!user.getMatKhau().equals(password)) {
-                        request.setAttribute("error", "Wrong Password");
-                    } else {
-                        session.setAttribute("user", user);
-                        if (user.getIdkh().equals("admin")) {
-                            userPath = "/adminindex";
-                            request.getRequestDispatcher(userPath).forward(request, response);
-                        } else if ("1".equals((String) session.getAttribute("checkout"))) {
-                            session.removeAttribute("checkout");
-                            request.setAttribute("title", "Checkout");
-                            userPath = "/checkout";
-                        } else {
-                            userPath = "/index";
-                        }
-                    }
-                }
-            }
-        }
         if (userPath.equals("/updateCart")) {
             String productId = request.getParameter("productId");
             String quantity = request.getParameter("quantity");

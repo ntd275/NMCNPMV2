@@ -49,6 +49,7 @@
         <url-pattern>/editproduct</url-pattern>
         <url-pattern>/updateproducttodb</url-pattern>
         <url-pattern>/updateproduct</url-pattern>
+        <url-pattern>/detailorder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -86,6 +87,7 @@
             <url-pattern>/preview.jsp</url-pattern>
             <url-pattern>/managerorder.jsp</url-pattern>
             <url-pattern>/editproduct.jsp</url-pattern>
+            <url-pattern>/detailorder.jsp</url-pattern>
             
             
             <include-prelude>/WEB-INF/jspf/header_admin.jspf</include-prelude>

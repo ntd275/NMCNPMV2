@@ -11,10 +11,15 @@
 <jsp:include page="banner-top.jsp"></jsp:include>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<script>
+            function goBack() {
+                window.history.back();
+            }
+</script>
 <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
     <ul class="nav navbar-nav nav_1">
 
-        <li><a style="margin-left: 30px; color: #fff; margin-top: 20px;" class="btn btn-primary btn-block" href="<c:url value='category?TryClothes'/>">Back</a></li>
+        <button class="btn btn-primary" onclick="goBack()" style="margin-left:20px;margin-top:20px; ">Back</button>
 
     </ul>
 </div>

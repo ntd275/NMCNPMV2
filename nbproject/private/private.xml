@@ -3,12 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/minhh/Desktop/11h25/NMCNPMV2/src/java/controller/ControllerServlet.java</file>
-            <file>file:/C:/Users/minhh/Desktop/11h25/NMCNPMV2/web/viewCart.jsp</file>
-            <file>file:/C:/Users/minhh/Desktop/11h25/NMCNPMV2/src/java/listener/ControllerServletListener.java</file>
-            <file>file:/C:/Users/minhh/Desktop/11h25/NMCNPMV2/src/java/controller/Validator.java</file>
-            <file>file:/C:/Users/minhh/Desktop/11h25/NMCNPMV2/web/index.jsp</file>
-            <file>file:/C:/Users/minhh/Desktop/11h25/NMCNPMV2/web/login.jsp</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/session_bean/CustomerOrderSessionBean.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/controller/Validator.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/web/preview.jsp</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/controller/ControllerServlet.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/listener/ControllerServletListener.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/session_bean/ProductDetailSessionBean.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/session_bean/UserSessionBean.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/session_bean/OrderManager.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/web/product.jsp</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/web/tryOn.jsp</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/web/category.jsp</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/session_bean/AbstractSessionBean.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/web/adminindex.jsp</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/web/index.jsp</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/session_bean/CustomerSessionBean.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/session_bean/ProductSessionBean.java</file>
+            <file>file:/C:/Users/ntd27/Desktop/NMCNPM/Projects/New%20folder/NMCNPMV2/src/java/session_bean/OrderedProductSessionBean.java</file>
         </group>
     </open-files>
 </project-private>

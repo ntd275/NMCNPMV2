@@ -45,7 +45,7 @@
                             <form action="update" method="get">
                                     <input type="text" name="num" value="<%= item.getQuantity()%>" style="width: 50%; text-align: center" >
                                     <input type="text" name="id" value="<%=item.getProduct().getIdsp()%>" hidden>
-                                    <input class="item_add hvr-skew-backward" type="submit" value="Update" style="margin-left: 10px" >
+                                    <input class="item_add hvr-skew-backward" type="submit" value="update" style="margin-left: 10px" >
                             </form>
                         </td>
                         <td class="item_price">$<%= item.getTotal()%></td>

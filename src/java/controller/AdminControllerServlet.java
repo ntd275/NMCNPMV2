@@ -124,6 +124,13 @@ public class AdminControllerServlet extends HttpServlet {
             request.setAttribute("title", "Edit Product");
         }
         
+        if(userPath.equals("/detailorder")){
+            String idgd = request.getParameter("idgd");
+            List<DonHang> orders = OrderSB.findByOrderId(idgd);
+            request.setAttribute("orders", orders);
+            request.setAttribute("title", "Detail Order");
+        }
+        
         
         
         String url = userPath + ".jsp";

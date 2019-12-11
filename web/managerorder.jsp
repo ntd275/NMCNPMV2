@@ -25,6 +25,7 @@
                             <th>So Dien Thoai</th>
                             <th>Trang Thai</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     <%
                         List<DonHang> orders = (List<DonHang>) session.getAttribute("ordered");
@@ -50,6 +51,7 @@
                             }
                         %>
                         <td><a class="btn btn-primary" href="deleteorder?idsp=<%=order.getSanPham().getIdsp()%>&magd=<%=order.getGiaoDich().getMaGiaoDich()%>">Xoa</a> </td>
+                        <td> <a href="detailorder?idgd=<%=order.getDonHangPK().getMaGiaoDich()%>">Detail</a></td>
                     </tr>
                     <%
                         }
